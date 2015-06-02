@@ -1,0 +1,8 @@
+{
+  "SAKSBEHANDLER":"tfk-saksbehandling-skoleskyss",
+  "DB":"mongodb://localhost:27017/tfk",
+  "COLLECTION":"forms",
+  "FORM_ID":"tkf-skoleskyss",
+  "FORM_VERSION":"12.0.2",
+  "OUT": "files"
+}

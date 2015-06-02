@@ -1,0 +1,39 @@
+{
+  "name": "tfk-saksbehandling",
+  "description": "Saksbehandling grunnmodul",
+  "version": "1.0.0",
+  "author": {
+    "name": "Geir Gåsodden",
+    "email": "geir.gasodden@pythonia.no",
+    "url": "https://github.com/zrrrzzt"
+  },
+  "private": true,
+  "main": "index.js",
+  "bin":{
+    "tfk-saksbehandling":"cli.js"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec test/*.js",
+    "setup": "npm install && node setup.js"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/telemark/tfk-saksbehandling.git"
+  },
+  "bugs": {
+    "url": "http://github.com/telemark/tfk-saksbehandling/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jscs": "^1.13.1",
+    "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "mongojs": "^0.18.2",
+    "tfk-saksbehandling-skoleskyss": "git+https://github.com/telemark/tfk-saksbehandling-skoleskyss.git"
+  }
+}
