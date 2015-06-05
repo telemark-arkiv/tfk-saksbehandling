@@ -44,7 +44,7 @@ function tfkSaksbehandling(options, callback){
         if (err) {
           return callback(err, null);
         } else {
-          var filename = result._id + '.json';
+          var filename = options.OUT + '/' + result._id + '.json';
           fs.writeFile(filename, JSON.stringify(result), function (feil) {
             if (feil) {
               return callback(feil, null);
