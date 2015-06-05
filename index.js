@@ -35,48 +35,25 @@ function tfkSaksbehandling(options, callback){
   var saksbehandler = require(options.SAKSBEHANDLER);
   var db = mongojs(options.DB);
   var collection = db.collection(options.COLLECTION);
-  var totalJobs = 0;
-  var jobCount = 0;
-  var messages = [];
-
-  function areWeDoneYet(){
-    jobCount++;
-    console.log(jobCount + " jobs done.");
-    if (jobCount === totalJobs) {
-      return callback(null, messages);
-    }
-  }
 
   collection.findOne({formId:options.FORM_ID, formVersion:options.FORM_VERSION}, function(error, data) {
     if (error) {
       return callback(error, null);
     } else {
-      messages.push("Found " + data.length + " forms.");
-      if (data.length > 0) {
-        totalJobs = data.length;
-        console.log(totalJobs);
-        data.forEach(function(item) {
-          saksbehandler(item, function (err, result) {
-            if (err) {
-              messages.push(err);
-              areWeDoneYet();
+      saksbehandler(data, function(err, result){
+        if (err) {
+          return callback(err, null);
+        } else {
+          var filename = result._id + '.json';
+          fs.writeFile(filename, JSON.stringify(result), function (feil) {
+            if (feil) {
+              return callback(feil, null);
             } else {
-              var filename = options.OUT + '/' + result._id + '.json';
-              fs.writeFile(filename, JSON.stringify(result), function (feil) {
-                if (feil) {
-                  messages.push(feil);
-                  areWeDoneYet();
-                } else {
-                  messages.push("Finished form " + result._id);
-                  areWeDoneYet();
-                }
-              });
+              return callback(null, "Finished form " + result._id);
             }
-          })
-        });
-      } else {
-        return callback(null, messages);
-      }
+          });
+        }
+      });
     }
   });
 }
