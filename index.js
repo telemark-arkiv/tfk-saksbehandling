@@ -47,7 +47,7 @@ function tfkSaksbehandling(options, callback){
     }
   }
 
-  collection.find({formId:options.FORM_ID, formVersion:options.FORM_VERSION}, function(error, data) {
+  collection.findOne({formId:options.FORM_ID, formVersion:options.FORM_VERSION}, function(error, data) {
     if (error) {
       return callback(error, null);
     } else {
