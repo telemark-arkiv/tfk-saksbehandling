@@ -3,6 +3,14 @@
   "DB":"mongodb://localhost:27017/tfk",
   "COLLECTION":"forms",
   "FORM_ID":"tkf-skoleskyss",
-  "FORM_VERSION":"12.0.2",
-  "OUT": "files"
+  "FORM_VERSION":"13.0.3",
+  "saveFileToPath": "files",
+  "dsfConnectionConfig": {
+    "url": "http://ws-test.infotorg.no/xml/ErgoGroup/DetSentraleFolkeregister1_4/2011-09-26/DetSentraleFolkeregister1_4.wsdl",
+    "namespaceBrukersesjon": "http://ws.infotorg.no/xml/Admin/Brukersesjon/2006-07-07/Brukersesjon.xsd",
+    "distribusjonskanal": "PTP",
+    "systemnavn": "Systemnavn",
+    "brukernavn": "brukernavn",
+    "passord": "passord"
+  }
 }

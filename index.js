@@ -1,6 +1,5 @@
 'use strict';
 
-var fs = require('fs');
 var mongojs = require('mongojs');
 
 function tfkSaksbehandling(options, callback){
@@ -28,10 +27,6 @@ function tfkSaksbehandling(options, callback){
     return callback(new Error('Missing required input: options.FORM_VERSION'), null);
   }
 
-  if (!options.OUT) {
-    return callback(new Error('Missing required input: options.OUT'), null);
-  }
-
   var saksbehandler = require(options.SAKSBEHANDLER);
   var db = mongojs(options.DB);
   var collection = db.collection(options.COLLECTION);
@@ -40,18 +35,13 @@ function tfkSaksbehandling(options, callback){
     if (error) {
       return callback(error, null);
     } else {
+      data.dsfConnectionConfig = options.dsfConnectionConfig;
+      data.saveFileToPath = options.saveFileToPath;
       saksbehandler(data, function(err, result){
         if (err) {
           return callback(err, null);
         } else {
-          var filename = options.OUT + '/' + result._id + '.json';
-          fs.writeFile(filename, JSON.stringify(result), function (feil) {
-            if (feil) {
-              return callback(feil, null);
-            } else {
-              return callback(null, "Finished form " + result._id);
-            }
-          });
+          return callback(null, result);
         }
       });
     }
