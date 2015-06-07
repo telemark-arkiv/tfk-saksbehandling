@@ -1,7 +1,18 @@
 # tfk-saksbehandling
-Node modul som henter data fra forms-databasen, kjører gjennom saksbehandling og lagrer resultatet i en fil
+Node modul som henter data fra forms-databasen og kjører gjennom en saksbehandlingsmodul
 
 ## Installasjon
+Fra GitHub
+
+```sh
+$ git clone git@github.com:telemark/tfk-saksbehandling.git
+```
+
+cd inn i katalogen og kjør setupscriptet.
+
+```sh
+$ npm run setup
+```
 
 ## Bruk - Modul
 
@@ -10,12 +21,24 @@ Node modul som henter data fra forms-databasen, kjører gjennom saksbehandling o
 
 var tfkSaksbehandler = require('tfk-saksbehandler');
 var options = {
-  SAKSBEHANDLER:"tfk-saksbehandling-skoleskyss",
-  DB:"mongodb://localhost:27017/tfk",
-  COLLECTION:"forms",
-  FORM_ID:"tkf-skoleskyss",
-  FORM_VERSION:"12.0.2",
-  OUT: "files"
+  {
+    "SAKSBEHANDLER":"tfk-saksbehandling-skoleskyss",
+    "DB":"mongodb://localhost:27017/tfk",
+    "COLLECTION":"forms",
+    "FORM_ID":"tkf-skoleskyss",
+    "FORM_VERSION":"13.0.3",
+    "SAKSBEHANDLER_OPTIONS": {
+      "saveFileToPath": "files",
+      "dsfConnectionConfig": {
+        "url": "http://ws-test.infotorg.no/xml/ErgoGroup/DetSentraleFolkeregister1_4/2011-09-26/DetSentraleFolkeregister1_4.wsdl",
+        "namespaceBrukersesjon": "http://ws.infotorg.no/xml/Admin/Brukersesjon/2006-07-07/Brukersesjon.xsd",
+        "distribusjonskanal": "PTP",
+        "systemnavn": "Systemnavn",
+        "brukernavn": "brukernavn",
+        "passord": "passord"
+      }
+    }
+  }
 };
 
 tfkSaksbehandler(options, function(error, data){
@@ -44,11 +67,16 @@ $ tfk-saksbehandler <path-to-options-file>
 .json-fil på dette formatet
 
 **SAKSBEHANDLER** Node-modulen for saksbehandling
+
 **DB** Databasekoblingen
+
 **COLLECTION** MongoDB-collection
+
 **FORM_ID** ID for skjemaet som skal hentes ut
+
 **FORM_VERSION** Versjonsnummer for skjemaet
-**OUT** Bane til katalogen hvor resultatet skal lagres
+
+**SAKSBEHANDLER_OPTIONS** Ekstra options for ulike saksbehandlingsmoduler
 
 ```javascript
 {
@@ -56,7 +84,17 @@ $ tfk-saksbehandler <path-to-options-file>
   "DB":"mongodb://localhost:27017/tfk",
   "COLLECTION":"forms",
   "FORM_ID":"tkf-skoleskyss",
-  "FORM_VERSION":"12.0.2",
-  "OUT": "files"
+  "FORM_VERSION":"13.0.3",
+  "SAKSBEHANDLER_OPTIONS": {
+    "saveFileToPath": "files",
+    "dsfConnectionConfig": {
+      "url": "http://ws-test.infotorg.no/xml/ErgoGroup/DetSentraleFolkeregister1_4/2011-09-26/DetSentraleFolkeregister1_4.wsdl",
+      "namespaceBrukersesjon": "http://ws.infotorg.no/xml/Admin/Brukersesjon/2006-07-07/Brukersesjon.xsd",
+      "distribusjonskanal": "PTP",
+      "systemnavn": "Systemnavn",
+      "brukernavn": "brukernavn",
+      "passord": "passord"
+    }
+  }
 }
 ```
