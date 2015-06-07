@@ -1,6 +1,7 @@
 'use strict';
 
 var mongojs = require('mongojs');
+var extend = require('extend-object');
 
 function tfkSaksbehandling(options, callback){
   if (!options) {
@@ -35,8 +36,9 @@ function tfkSaksbehandling(options, callback){
     if (error) {
       return callback(error, null);
     } else {
-      data.dsfConnectionConfig = options.dsfConnectionConfig;
-      data.saveFileToPath = options.saveFileToPath;
+      if (options.SAKSBEHANDLER_OPTIONS) {
+        extend(data, options.SAKSBEHANDLER_OPTIONS);
+      }
       saksbehandler(data, function(err, result){
         if (err) {
           return callback(err, null);
