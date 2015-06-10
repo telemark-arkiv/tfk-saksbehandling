@@ -36,16 +36,20 @@ function tfkSaksbehandling(options, callback){
     if (error) {
       return callback(error, null);
     } else {
-      if (options.SAKSBEHANDLER_OPTIONS) {
-        extend(data, options.SAKSBEHANDLER_OPTIONS);
-      }
-      saksbehandler(data, function(err, result){
-        if (err) {
-          return callback(err, null);
-        } else {
-          return callback(null, result);
+      if (data) {
+        if (options.SAKSBEHANDLER_OPTIONS) {
+          extend(data, options.SAKSBEHANDLER_OPTIONS);
         }
-      });
+        saksbehandler(data, function(err, result){
+          if (err) {
+            return callback(err, null);
+          } else {
+            return callback(null, result);
+          }
+        });
+      } else {
+        return callback(null, "None found");
+      }
     }
   });
 }
