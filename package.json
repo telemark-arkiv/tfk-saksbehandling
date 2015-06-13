@@ -1,7 +1,7 @@
 {
   "name": "tfk-saksbehandling",
   "description": "Saksbehandling grunnmodul",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "author": {
     "name": "Geir Gåsodden",
     "email": "geir.gasodden@pythonia.no",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "extend-object": "^1.0.0",
+    "is-online": "^4.0.2",
     "mongojs": "^0.18.2",
     "tfk-saksbehandling-skoleskyss": "git+https://github.com/telemark/tfk-saksbehandling-skoleskyss.git"
   }
