@@ -1,4 +1,6 @@
 # tfk-saksbehandling
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/telemark/tfk-saksbehandling.svg)](https://greenkeeper.io/)
 Node modul som henter data fra forms-databasen og kjører gjennom en saksbehandlingsmodul
 
 ## Installasjon
