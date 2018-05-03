@@ -29,13 +29,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "jscs": "^1.13.1",
-    "mocha": "^2.2.5"
+    "jscs": "1.13.1",
+    "mocha": "2.5.3"
   },
   "dependencies": {
-    "extend-object": "^1.0.0",
-    "is-online": "^4.0.2",
-    "mongojs": "^0.18.2",
+    "extend-object": "1.0.0",
+    "is-online": "4.0.2",
+    "mongojs": "0.18.2",
     "tfk-saksbehandling-skoleskyss": "git+https://github.com/telemark/tfk-saksbehandling-skoleskyss.git"
   }
 }
