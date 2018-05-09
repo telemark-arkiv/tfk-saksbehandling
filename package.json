@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "extend-object": "1.0.0",
-    "is-online": "4.0.2",
+    "is-online": "7.0.0",
     "mongojs": "2.5.0",
     "tfk-saksbehandling-skoleskyss": "git+https://github.com/telemark/tfk-saksbehandling-skoleskyss.git"
   }
